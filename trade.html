@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trade</title>
+</head>
+<body>
+
+<h2>Simulador de Investimento</h2>
+
+<input type="number" id="valor" placeholder="Digite o valor">
+<button onclick="investir()">Investir</button>
+
+<p id="resultado"></p>
+
+<script>
+function investir() {
+    let valor = document.getElementById("valor").value;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function() {
+        document.getElementById("resultado").innerHTML =
+            "Saldo final: R$ " + this.responseText;
+    }
+
+    xhttp.open("POST", "trade.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("valor=" + valor);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor</title>
+</head>
+<body>
+
+<input type="number" id="valor">
+<button onclick="converter()">Converter</button>
+
+<p id="resultado"></p>
+
+<script>
+function converter() {
+    let valor = document.getElementById("valor").value;
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function() {
+        console.log(this.responseText);
+
+        let resposta = JSON.parse(this.responseText);
+
+        document.getElementById("resultado").innerHTML =
+            "Valor em dólar: $" + resposta.dolar;
+    }
+
+    xhttp.open("GET", "converte.php?valor_reais=" + valor, true);
+    xhttp.send();
+}
+</script>
+
+</body>
+</html>
